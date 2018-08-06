@@ -21,6 +21,11 @@ allprojects {
         jcenter()
     }
 }
+ext{
+    retrofit_version="2.4.0"
+    dagger_version="2.16"
+
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
