@@ -2,7 +2,7 @@ package com.example.onur.movieexplorer.data.entity;
 
 import java.util.List;
 
-public class MovieResponseEntity {
+public class MovieResponse {
 
     private List<MovieEntity> results = null;
 
