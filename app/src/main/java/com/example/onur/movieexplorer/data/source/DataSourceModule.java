@@ -28,7 +28,7 @@ public abstract class DataSourceModule {
     @Provides
     static Retrofit provideRetrofit(OkHttpClient client){
         return new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
