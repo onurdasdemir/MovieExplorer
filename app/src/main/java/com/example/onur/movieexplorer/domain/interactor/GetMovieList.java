@@ -1,17 +1,21 @@
 package com.example.onur.movieexplorer.domain.interactor;
 
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
+import com.example.onur.movieexplorer.data.source.MovieDataSource;
 import com.example.onur.movieexplorer.data.source.MovieRepository;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Single;
 
 public class GetMovieList extends UseCase<GetMovieList.Param, List<MovieEntity>> {
 
-    private final MovieRepository movieRepository;
+    private final MovieDataSource movieRepository;
 
-    public GetMovieList(MovieRepository movieRepository) {
+    @Inject
+    GetMovieList(MovieDataSource movieRepository) {
         this.movieRepository = movieRepository;
     }
 

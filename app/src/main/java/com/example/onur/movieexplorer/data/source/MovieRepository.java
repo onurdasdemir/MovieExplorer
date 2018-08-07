@@ -4,6 +4,8 @@ import com.example.onur.movieexplorer.data.entity.MovieEntity;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 import io.reactivex.functions.Predicate;
 
@@ -12,7 +14,8 @@ public class MovieRepository implements MovieDataSource {
     private final MovieDataSource remoteMovieDataSource;
     private final MovieDataSource localMovieDataSource;
 
-    public MovieRepository(MovieDataSource remoteMovieDataSource, MovieDataSource localMovieDataSource) {
+    @Inject
+    MovieRepository(@Remote MovieDataSource remoteMovieDataSource, @Local MovieDataSource localMovieDataSource) {
         this.remoteMovieDataSource = remoteMovieDataSource;
         this.localMovieDataSource = localMovieDataSource;
     }

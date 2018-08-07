@@ -6,11 +6,17 @@ import com.example.onur.movieexplorer.data.source.MovieDataSource;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 
 public class MovieLocalDataSource implements MovieDataSource {
 
     private String s;
+
+    @Inject
+    public MovieLocalDataSource() {
+    }
 
     @Override
     public Single<List<MovieEntity>> getNowPlayingMovies() {
