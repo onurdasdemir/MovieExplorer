@@ -6,6 +6,8 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface MovieService {
+
     @GET("/movie")
     Single<MovieResponse> getNowPlayingMovies();
+
 }

@@ -11,4 +11,5 @@ public class MovieGenreEntity {
     @SerializedName("name")
     @Expose
     public String name;
+
 }
