@@ -23,6 +23,6 @@ public class MovieMapper {
     }
 
     public MovieModel toMovieModel(MovieEntity movieEntity){
-        return new MovieModel(movieEntity.getOriginalTitle());
+        return new MovieModel(movieEntity.getOriginalTitle(),movieEntity.getPosterPath(),movieEntity.getVoteAverage());
     }
 }

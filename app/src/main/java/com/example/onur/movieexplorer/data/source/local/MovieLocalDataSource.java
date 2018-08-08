@@ -25,7 +25,7 @@ public class MovieLocalDataSource implements MovieDataSource {
     }
 
     @Override
-    public Single<MovieDetailEntity> getMovieDetails() {
+    public Single<MovieDetailEntity> getMovieDetails(String id) {
         return null;
     }
 

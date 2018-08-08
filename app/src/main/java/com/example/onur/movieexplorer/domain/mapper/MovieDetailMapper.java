@@ -13,7 +13,7 @@ public class MovieDetailMapper {
     }
 
     public MovieDetailModel toMovieDetailModel (MovieDetailEntity detailEntity){
-        return new MovieDetailModel(detailEntity.overview);
+        return new MovieDetailModel(detailEntity.overview,detailEntity.posterPath,detailEntity.originalTitle,detailEntity.releaseDate,detailEntity.runtime);
     }
 
 }

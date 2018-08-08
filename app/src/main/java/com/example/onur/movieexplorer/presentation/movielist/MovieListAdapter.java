@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.onur.movieexplorer.R;
@@ -24,6 +26,7 @@ import javax.inject.Inject;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieHolder> {
 
    private List<MovieModel> movieModelList;
+   private OnMovieSelectedListener listener;
 
    @Inject
     public MovieListAdapter() {
@@ -40,6 +43,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @Override
     public void onBindViewHolder(@NonNull MovieHolder holder, int position) {
         final MovieModel movieModel = movieModelList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null){
+                    listener.onMovieSelected(movieModel.getId());
+                }
+            }
+        });
         holder.bind(movieModel);
     }
 
@@ -53,13 +64,25 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         this.notifyDataSetChanged();
     }
 
+    public void setOnMovieSelectedListener(OnMovieSelectedListener listener) {
+        this.listener = listener;
+    }
+
     static class MovieHolder extends RecyclerView.ViewHolder {
-        MovieHolder(View itemView) {
+        ImageView posterImage=(ImageView) itemView.findViewById(R.id.poster_image);
+        TextView textView=(TextView) itemView.findViewById(R.id.movie_title);
+       MovieHolder(View itemView) {
             super(itemView);
         }
 
         void bind(MovieModel model){
-           // Glide.with(itemView).load(model.getImageUri()).into();
+            textView.setText(model.getName());
+            Glide.with(itemView).load(model.getImageUri()).into(posterImage);
         }
     }
+
+    interface OnMovieSelectedListener{
+       void onMovieSelected(String movieId);
+    }
+
 }

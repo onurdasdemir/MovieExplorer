@@ -1,5 +1,7 @@
 package com.example.onur.movieexplorer.presentation.movielist;
 
+import android.os.Bundle;
+
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 import com.example.onur.movieexplorer.domain.interactor.GetMovieList;
 import com.example.onur.movieexplorer.domain.mapper.MovieMapper;
@@ -43,5 +45,10 @@ public class MovieListPresenter implements MovieListContract.Presenter{
                 view.renderUpcomingMovies(movieMapper.toMoviModelList(movieEntities));
             }
         });
+    }
+
+    @Override
+    public void onMovieSelected(String movieId) {
+        view.navigateToDetails(movieId);
     }
 }

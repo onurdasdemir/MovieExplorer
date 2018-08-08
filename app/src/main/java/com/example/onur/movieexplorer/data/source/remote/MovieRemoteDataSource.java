@@ -38,7 +38,8 @@ public class MovieRemoteDataSource implements MovieDataSource {
     }
 
     @Override
-    public Single<MovieDetailEntity> getMovieDetails() {
-        return movieService.getMovieDetails();
+    public Single<MovieDetailEntity> getMovieDetails(String id) {
+        return movieService.getMovieDetails(id);
     }
+
 }

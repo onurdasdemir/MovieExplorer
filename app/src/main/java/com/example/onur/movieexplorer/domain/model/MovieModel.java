@@ -4,9 +4,14 @@ public class MovieModel {
 
     private String name;
     private String imageUri;
+    private double rating;
+    private String id;
 
-    public MovieModel(String name) {
+    public MovieModel(String name,String imageUri,double rating) {
         this.name = name;
+        this.imageUri=imageUri;
+        this.rating=rating;
+
     }
 
     public String getName() {
@@ -14,7 +19,15 @@ public class MovieModel {
     }
 
     public String getImageUri() {
-        return imageUri;
+        return String.format("%s%s", "https://image.tmdb.org/t/p/w500", imageUri);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getRating(){
+        return getRating();
     }
 
     @Override

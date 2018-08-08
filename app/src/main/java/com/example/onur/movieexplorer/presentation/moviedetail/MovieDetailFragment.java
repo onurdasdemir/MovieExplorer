@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 
 import com.example.onur.movieexplorer.R;
 
+import javax.inject.Inject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MovieDetailFragment extends Fragment {
 
-
+    @Inject
+    MovieDetailContract.Presenter presenter;
     public MovieDetailFragment() {
         // Required empty public constructor
     }

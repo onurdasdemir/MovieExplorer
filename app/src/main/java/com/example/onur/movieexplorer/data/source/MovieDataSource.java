@@ -10,6 +10,6 @@ import io.reactivex.Single;
 public interface MovieDataSource {
     Single<List<MovieEntity>> getNowPlayingMovies();
 
-    Single<MovieDetailEntity> getMovieDetails();
+    Single<MovieDetailEntity> getMovieDetails(String id);
 
 }

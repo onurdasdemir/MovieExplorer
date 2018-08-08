@@ -38,6 +38,12 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
         super.onViewCreated(view, savedInstanceState);
         rvMovies = view.findViewById(R.id.rvMovies);
         rvMovies.setAdapter(adapter);
+        adapter.setOnMovieSelectedListener(new MovieListAdapter.OnMovieSelectedListener() {
+            @Override
+            public void onMovieSelected(String movieId) {
+                presenter.onMovieSelected(movieId);
+            }
+        });
         presenter.takeView(this);
     }
 
@@ -56,6 +62,11 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
     @Override
     public void renderUpcomingMovies(List<MovieModel> movieModels) {
         adapter.setMovieModelList(movieModels);
+    }
+
+    @Override
+    public void navigateToDetails(String movieId) {
+
     }
 
     @Override

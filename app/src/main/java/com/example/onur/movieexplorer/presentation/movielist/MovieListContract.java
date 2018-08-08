@@ -9,11 +9,15 @@ public interface MovieListContract {
 
     interface View extends BaseView{
         void renderUpcomingMovies(List<MovieModel> movieModels);
+
+        void navigateToDetails(String movieId);
     }
 
     interface Presenter{
         void takeView(View view);
         void dropView();
         void getUpComingMovies();
+
+        void onMovieSelected(String movieId);
     }
 }

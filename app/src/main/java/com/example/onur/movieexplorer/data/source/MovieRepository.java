@@ -1,5 +1,6 @@
 package com.example.onur.movieexplorer.data.source;
 
+import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 
 import java.util.List;
@@ -29,5 +30,15 @@ public class MovieRepository implements MovieDataSource {
                         return !movieEntities.isEmpty();
                     }
                 }).firstOrError();
+    }
+
+    @Override
+    public Single<MovieDetailEntity> getMovieDetails(String id) {
+        return Single.concat(localMovieDataSource.getMovieDetails(id),remoteMovieDataSource.getMovieDetails(id)).filter(new Predicate<MovieDetailEntity>() {
+            @Override
+            public boolean test(MovieDetailEntity movieDetailEntity) throws Exception {
+                return movieDetailEntity!=null;
+            }
+        }).firstOrError();
     }
 }

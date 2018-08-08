@@ -3,27 +3,29 @@ package com.example.onur.movieexplorer.domain.interactor;
 import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
 import com.example.onur.movieexplorer.data.source.MovieDataSource;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import io.reactivex.Single;
 
-public class GetDetail extends UseCase<GetDetail.Param, MovieDetailEntity> {
+public class GetMovieDetail extends UseCase<GetMovieDetail.Param, MovieDetailEntity> {
 
     private final MovieDataSource movieRepository;
 
     @Inject
-    GetDetail(MovieDataSource movieRepository) {
+    GetMovieDetail(MovieDataSource movieRepository) {
         this.movieRepository = movieRepository;
     }
 
     @Override
-    Single<MovieDetailEntity> buildUseCase(GetDetail.Param params) {
-        return movieRepository.getMovieDetails();
+    Single<MovieDetailEntity> buildUseCase(GetMovieDetail.Param params) {
+        return movieRepository.getMovieDetails(params.id);
     }
 
     public static final class Param{
+        private final String id;
 
+        public Param(String id) {
+            this.id = id;
+        }
     }
 }

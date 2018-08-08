@@ -3,6 +3,7 @@ package com.example.onur.movieexplorer;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.onur.movieexplorer.presentation.movielist.MovieListFragment;
 
@@ -17,12 +18,14 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentAndroidInjector;
+    private View viewLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewLoading = findViewById(R.id.viewLoading);
         if (savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
@@ -32,9 +35,13 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         }
     }
 
-    public void showLoading(){}
+    public void showLoading(){
+        viewLoading.setVisibility(View.VISIBLE);
+    }
 
-    public void hideLoading(){}
+    public void hideLoading(){
+        viewLoading.setVisibility(View.GONE);
+    }
 
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
