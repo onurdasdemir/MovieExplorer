@@ -1,5 +1,6 @@
 package com.example.onur.movieexplorer.data.source.remote;
 
+import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 import com.example.onur.movieexplorer.data.entity.MovieResponse;
 import com.example.onur.movieexplorer.data.source.DataSourceModule;
@@ -34,6 +35,10 @@ public class MovieRemoteDataSource implements MovieDataSource {
                 return movieResponse.getResults();
             }
         });
+    }
 
+    @Override
+    public Single<MovieDetailEntity> getMovieDetails() {
+        return movieService.getMovieDetails();
     }
 }

@@ -35,9 +35,11 @@ public class MovieListPresenter implements MovieListContract.Presenter{
 
     @Override
     public void getUpComingMovies() {
+        view.showLoading();
         getMovieList.execute(new GetMovieList.Param(), new Consumer<List<MovieEntity>>() {
             @Override
             public void accept(List<MovieEntity> movieEntities) throws Exception {
+                view.hideLoading();
                 view.renderUpcomingMovies(movieMapper.toMoviModelList(movieEntities));
             }
         });

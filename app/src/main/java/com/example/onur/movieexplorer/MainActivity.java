@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         }
     }
 
+    public void showLoading(){}
+
+    public void hideLoading(){}
+
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return  fragmentAndroidInjector;

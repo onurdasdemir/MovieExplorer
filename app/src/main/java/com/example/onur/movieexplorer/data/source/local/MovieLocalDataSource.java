@@ -1,5 +1,6 @@
 package com.example.onur.movieexplorer.data.source.local;
 
+import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 import com.example.onur.movieexplorer.data.source.MovieDataSource;
 
@@ -21,6 +22,11 @@ public class MovieLocalDataSource implements MovieDataSource {
     @Override
     public Single<List<MovieEntity>> getNowPlayingMovies() {
         return Single.just(Collections.<MovieEntity>emptyList());
+    }
+
+    @Override
+    public Single<MovieDetailEntity> getMovieDetails() {
+        return null;
     }
 
     public void saveUser(String user){
