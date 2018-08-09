@@ -38,6 +38,10 @@ public abstract class BaseFragment extends Fragment {
         return (MainActivity) getActivity();
     }
 
+    protected void navigateToFragment(BaseFragment fragment){
+        getMainActivity().navigateToFragment(fragment);
+    }
+
     @LayoutRes
     protected abstract int getLayoutId();
 }

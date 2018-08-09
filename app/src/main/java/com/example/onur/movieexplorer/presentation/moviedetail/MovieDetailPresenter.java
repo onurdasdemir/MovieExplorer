@@ -35,9 +35,9 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter{
     }
 
     @Override
-    public void getMovieDetails() {
+    public void getMovieDetails(String movieId) {
         view.showLoading();
-        getMovieDetail.execute(new GetMovieDetail.Param(""), new Consumer<MovieDetailEntity>() {
+        getMovieDetail.execute(new GetMovieDetail.Param(movieId), new Consumer<MovieDetailEntity>() {
             @Override
             public void accept(MovieDetailEntity movieDetailEntity) throws Exception {
                 view.hideLoading();

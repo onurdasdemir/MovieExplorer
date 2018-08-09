@@ -17,6 +17,7 @@ import com.example.onur.movieexplorer.R;
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 import com.example.onur.movieexplorer.domain.mapper.MovieMapper;
 import com.example.onur.movieexplorer.domain.model.MovieModel;
+import com.example.onur.movieexplorer.presentation.moviedetail.MovieDetailFragment;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
 
     @Override
     public void navigateToDetails(String movieId) {
-
+        navigateToFragment(MovieDetailFragment.newInstance(movieId));
     }
 
     @Override

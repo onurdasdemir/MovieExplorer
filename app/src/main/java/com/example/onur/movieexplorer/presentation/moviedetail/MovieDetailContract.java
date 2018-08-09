@@ -12,6 +12,6 @@ public interface MovieDetailContract {
     interface Presenter{
         void takeView(MovieDetailContract.View view);
         void dropView();
-        void getMovieDetails();
+        void getMovieDetails(String movieId);
     }
 }

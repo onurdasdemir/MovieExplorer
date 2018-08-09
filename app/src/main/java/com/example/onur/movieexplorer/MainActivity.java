@@ -27,12 +27,16 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         setContentView(R.layout.activity_main);
         viewLoading = findViewById(R.id.viewLoading);
         if (savedInstanceState == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, new MovieListFragment())
-                    .addToBackStack(null)
-                    .commit();
+           navigateToFragment(new MovieListFragment());
         }
+    }
+
+    public void navigateToFragment(BaseFragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void showLoading(){
