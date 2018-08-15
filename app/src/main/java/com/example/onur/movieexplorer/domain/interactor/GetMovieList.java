@@ -2,12 +2,8 @@ package com.example.onur.movieexplorer.domain.interactor;
 
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
 import com.example.onur.movieexplorer.data.source.MovieDataSource;
-import com.example.onur.movieexplorer.data.source.MovieRepository;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
 import io.reactivex.Single;
 
 public class GetMovieList extends UseCase<GetMovieList.Param, List<MovieEntity>> {
@@ -25,6 +21,5 @@ public class GetMovieList extends UseCase<GetMovieList.Param, List<MovieEntity>>
     }
 
     public static final class Param{
-
     }
 }

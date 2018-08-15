@@ -1,23 +1,19 @@
 package com.example.onur.movieexplorer.presentation.movielist;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.onur.movieexplorer.R;
-import com.example.onur.movieexplorer.data.source.MovieRepository;
 import com.example.onur.movieexplorer.domain.model.MovieModel;
 import com.example.onur.movieexplorer.util.ObjectHelper;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,9 +25,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
    private OnMovieSelectedListener listener;
 
    @Inject
-    public MovieListAdapter() {
+   public MovieListAdapter() {
         movieModelList = Collections.emptyList();
-    }
+   }
 
     @NonNull
     @Override
@@ -69,14 +65,18 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
     static class MovieHolder extends RecyclerView.ViewHolder {
-        ImageView posterImage=(ImageView) itemView.findViewById(R.id.poster_image);
-        TextView textView=(TextView) itemView.findViewById(R.id.movie_title);
+        ImageView posterImage = itemView.findViewById(R.id.poster_image);
+        TextView textView = itemView.findViewById(R.id.movie_title);
+        ProgressBar prgVote = itemView.findViewById(R.id.prgVote);
+        TextView txtVote = itemView.findViewById(R.id.txtVote);
        MovieHolder(View itemView) {
             super(itemView);
         }
 
         void bind(MovieModel model){
             textView.setText(model.getName());
+            txtVote.setText(String.valueOf(model.getRating()));
+            prgVote.setProgress((int) model.getRating());
             Glide.with(itemView).load(model.getImageUri()).into(posterImage);
         }
     }

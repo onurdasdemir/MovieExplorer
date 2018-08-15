@@ -1,9 +1,9 @@
 package com.example.onur.movieexplorer;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.onur.movieexplorer.presentation.movielist.MovieListFragment;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentAndroidInjector;
-    private View viewLoading;
+    private ContentLoadingProgressBar viewLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,19 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1){
+            super.onBackPressed();
+        }
+    }
+
     public void showLoading(){
-        viewLoading.setVisibility(View.VISIBLE);
+       viewLoading.show();
     }
 
     public void hideLoading(){
-        viewLoading.setVisibility(View.GONE);
+        viewLoading.hide();
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.example.onur.movieexplorer.data.source;
 
+import com.example.onur.movieexplorer.data.source.local.Cache;
 import com.example.onur.movieexplorer.data.source.local.MovieLocalDataSource;
 import com.example.onur.movieexplorer.data.source.remote.MovieRemoteDataSource;
 import com.example.onur.movieexplorer.data.source.remote.network.MovieService;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
@@ -17,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public abstract class DataSourceModule {
 
+    @Singleton
     @Provides
     static OkHttpClient provideOkHttpClient(){
         return new OkHttpClient.Builder()
@@ -25,6 +29,7 @@ public abstract class DataSourceModule {
                 .build();
     }
 
+    @Singleton
     @Provides
     static Retrofit provideRetrofit(OkHttpClient client){
         return new Retrofit.Builder()
@@ -35,19 +40,27 @@ public abstract class DataSourceModule {
                 .build();
     }
 
+    @Singleton
     @Provides
     static MovieService provideMovieService(Retrofit retrofit){
         return retrofit.create(MovieService.class);
     }
 
+    @Singleton
     @Local
     @Binds
     abstract MovieDataSource bindMovieLocalDataSource(MovieLocalDataSource movieLocalDataSource);
 
+    @Singleton
     @Remote
     @Binds
     abstract MovieDataSource bindMovieRemoteDataSource(MovieRemoteDataSource movieLocalDataSource);
 
+    @Singleton
     @Binds
     abstract MovieDataSource bindRepository(MovieRepository repository);
+
+    @Singleton
+    @Binds
+    abstract Cache bindCache(MovieLocalDataSource localDataSource);
 }

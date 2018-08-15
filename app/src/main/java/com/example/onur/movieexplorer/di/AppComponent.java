@@ -3,13 +3,15 @@ package com.example.onur.movieexplorer.di;
 import android.app.Application;
 
 import com.example.onur.movieexplorer.App;
-import com.example.onur.movieexplorer.MainActivity;
 import com.example.onur.movieexplorer.data.source.DataSourceModule;
+
+import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
+@Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         DataSourceModule.class,

@@ -2,19 +2,17 @@ package com.example.onur.movieexplorer.presentation.moviedetail;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.onur.movieexplorer.BaseFragment;
 import com.example.onur.movieexplorer.R;
-import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
+import com.example.onur.movieexplorer.domain.model.MovieDetailModel;
 import com.example.onur.movieexplorer.util.ObjectHelper;
-
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -30,6 +28,12 @@ public class MovieDetailFragment extends BaseFragment implements MovieDetailCont
         return fragment;
     }
 
+    private ImageView imgPoster;
+    private TextView txtOriginalTitle;
+    private TextView txtOverView;
+    private TextView txtRuntime;
+    private TextView txtReleaseDate;
+
     @Inject
     MovieDetailContract.Presenter presenter;
 
@@ -41,6 +45,17 @@ public class MovieDetailFragment extends BaseFragment implements MovieDetailCont
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_movie_detail;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        imgPoster = view.findViewById(R.id.imgPoster);
+        txtOriginalTitle = view.findViewById(R.id.txtOriginalTitle);
+        txtOverView = view.findViewById(R.id.txtOverview);
+        txtRuntime = view.findViewById(R.id.txtRunTime);
+        txtReleaseDate = view.findViewById(R.id.txtReleaseDate);
+
     }
 
     @Override
@@ -58,7 +73,11 @@ public class MovieDetailFragment extends BaseFragment implements MovieDetailCont
     }
 
     @Override
-    public void renderMovieDetails(MovieDetailEntity movieDetailEntity) {
-        Toast.makeText(getContext(), movieDetailEntity.id, Toast.LENGTH_LONG).show();
+    public void renderMovieDetails(MovieDetailModel movieDetailModel) {
+        Glide.with(this).load(movieDetailModel.getImageUri()).into(imgPoster);
+        txtReleaseDate.setText(movieDetailModel.getReleaseDate());
+        txtRuntime.setText(movieDetailModel.getRunTime());
+        txtOverView.setText(movieDetailModel.getOverView());
+        txtOriginalTitle.setText(movieDetailModel.getOriginalTitle());
     }
 }

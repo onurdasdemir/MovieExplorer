@@ -14,7 +14,7 @@ public class MovieMapper {
     public MovieMapper() {
     }
 
-    public List<MovieModel> toMoviModelList(List<MovieEntity> movieEntities){
+    public List<MovieModel> toMovieModelList(List<MovieEntity> movieEntities){
         ArrayList<MovieModel> list = new ArrayList<>();
         for (MovieEntity entity : movieEntities){
             list.add(toMovieModel(entity));
@@ -22,7 +22,10 @@ public class MovieMapper {
         return list;
     }
 
-    public MovieModel toMovieModel(MovieEntity movieEntity){
-        return new MovieModel(movieEntity.getOriginalTitle(),movieEntity.getPosterPath(),movieEntity.getVoteAverage());
+    private MovieModel toMovieModel(MovieEntity movieEntity){
+        return new MovieModel(movieEntity.getOriginalTitle(),
+                movieEntity.getPosterPath(),
+                movieEntity.getVoteAverage(),
+                movieEntity.getId());
     }
 }

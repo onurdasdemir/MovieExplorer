@@ -1,15 +1,11 @@
 package com.example.onur.movieexplorer.presentation.moviedetail;
 
 import com.example.onur.movieexplorer.data.entity.MovieDetailEntity;
-import com.example.onur.movieexplorer.data.entity.MovieEntity;
+import com.example.onur.movieexplorer.domain.Callback;
 import com.example.onur.movieexplorer.domain.interactor.GetMovieDetail;
 import com.example.onur.movieexplorer.domain.mapper.MovieDetailMapper;
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.functions.Consumer;
 
 public class MovieDetailPresenter implements MovieDetailContract.Presenter{
 
@@ -37,12 +33,19 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter{
     @Override
     public void getMovieDetails(String movieId) {
         view.showLoading();
-        getMovieDetail.execute(new GetMovieDetail.Param(movieId), new Consumer<MovieDetailEntity>() {
+        getMovieDetail.execute(new GetMovieDetail.Param(movieId), new Callback<MovieDetailEntity>() {
             @Override
-            public void accept(MovieDetailEntity movieDetailEntity) throws Exception {
+            public void onSuccess(MovieDetailEntity movieDetailEntity) {
                 view.hideLoading();
-                view.renderMovieDetails(movieDetailEntity);
+                view.renderMovieDetails(movieDetailMapper.toMovieDetailModel(movieDetailEntity));
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                view.hideLoading();
+                view.showError(throwable.getMessage());
             }
         });
     }
+
 }

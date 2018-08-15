@@ -1,16 +1,13 @@
 package com.example.onur.movieexplorer.presentation.movielist;
 
-import android.os.Bundle;
-
 import com.example.onur.movieexplorer.data.entity.MovieEntity;
+import com.example.onur.movieexplorer.domain.Callback;
 import com.example.onur.movieexplorer.domain.interactor.GetMovieList;
 import com.example.onur.movieexplorer.domain.mapper.MovieMapper;
 
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.functions.Consumer;
 
 public class MovieListPresenter implements MovieListContract.Presenter{
 
@@ -38,11 +35,17 @@ public class MovieListPresenter implements MovieListContract.Presenter{
     @Override
     public void getUpComingMovies() {
         view.showLoading();
-        getMovieList.execute(new GetMovieList.Param(), new Consumer<List<MovieEntity>>() {
+        getMovieList.execute(new GetMovieList.Param(), new Callback<List<MovieEntity>>() {
             @Override
-            public void accept(List<MovieEntity> movieEntities) throws Exception {
+            public void onSuccess(List<MovieEntity> movieEntities) {
                 view.hideLoading();
-                view.renderUpcomingMovies(movieMapper.toMoviModelList(movieEntities));
+                view.renderUpcomingMovies(movieMapper.toMovieModelList(movieEntities));
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                view.hideLoading();
+                view.showError(throwable.getMessage());
             }
         });
     }

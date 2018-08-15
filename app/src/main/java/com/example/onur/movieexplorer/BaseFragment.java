@@ -6,6 +6,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,14 @@ public abstract class BaseFragment extends Fragment {
 
     public void hideLoading(){
         getMainActivity().hideLoading();
+    }
+
+    public void showError(String content){
+        new AlertDialog.Builder(getMainActivity()).setTitle(getString(R.string.error_title))
+                .setMessage(TextUtils.isEmpty(content) ? getString(R.string.default_error) : content)
+                .setPositiveButton(getString(R.string.ok), null)
+                .create()
+                .show();
     }
 
     protected MainActivity getMainActivity(){

@@ -1,49 +1,92 @@
 package com.example.onur.movieexplorer.data.entity;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MovieDetailEntity {
+public class MovieDetailEntity extends BaseEntity {
     @SerializedName("adult")
-    @Expose
-    public Boolean adult;
+    private Boolean adult;
     @SerializedName("backdrop_path")
-    @Expose
-    public String backdropPath;
+    private String backdropPath;
     @SerializedName("genres")
-    @Expose
-    public List<MovieGenreEntity> genres = null;
+    private List<MovieGenreEntity> genres = null;
     @SerializedName("id")
-    @Expose
-    public Integer id;
+    private Integer id;
     @SerializedName("original_language")
-    @Expose
-    public String originalLanguage;
+    private String originalLanguage;
     @SerializedName("original_title")
-    @Expose
-    public String originalTitle;
+    private String originalTitle;
     @SerializedName("overview")
-    @Expose
-    public String overview;
+    private String overview;
     @SerializedName("poster_path")
-    @Expose
-    public String posterPath;
+    private String posterPath;
     @SerializedName("release_date")
-    @Expose
-    public String releaseDate;
+    private String releaseDate;
     @SerializedName("runtime")
-    @Expose
-    public Integer runtime;
+    private Integer runtime;
     @SerializedName("status")
-    @Expose
-    public String status;
+    private String status;
     @SerializedName("title")
-    @Expose
-    public String title;
+    private String title;
     @SerializedName("vote_average")
-    @Expose
-    public Double voteAverage;
+    private Double voteAverage;
 
+    public static MovieDetailEntity empty(){
+        MovieDetailEntity entity = new MovieDetailEntity();
+        entity.empty = true;
+        return entity;
+    }
+
+    public Boolean getAdult() {
+        return adult;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public List<MovieGenreEntity> getGenres() {
+        return genres;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Double getVoteAverage() {
+        return voteAverage;
+    }
 }

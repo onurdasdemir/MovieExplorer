@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class MovieEntity {
+public class MovieEntity extends BaseEntity {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
@@ -41,7 +41,7 @@ public class MovieEntity {
     @Expose
     private String releaseDate;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 

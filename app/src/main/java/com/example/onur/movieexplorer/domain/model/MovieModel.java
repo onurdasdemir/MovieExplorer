@@ -7,11 +7,11 @@ public class MovieModel {
     private double rating;
     private String id;
 
-    public MovieModel(String name,String imageUri,double rating) {
+    public MovieModel(String name, String imageUri, double rating, String id) {
         this.name = name;
-        this.imageUri=imageUri;
-        this.rating=rating;
-
+        this.imageUri = imageUri;
+        this.rating = rating;
+        this.id = id;
     }
 
     public String getName() {
@@ -27,7 +27,7 @@ public class MovieModel {
     }
 
     public double getRating(){
-        return getRating();
+        return rating;
     }
 
     @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvMovies"
     android:background="@android:color/holo_blue_light"
     android:layout_margin="8dp"
@@ -32,6 +33,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp">
                 <ProgressBar
+                    android:id="@+id/prgVote"
                     android:layout_gravity="center"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -39,16 +41,17 @@
                     android:background="@drawable/bg_circle"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:max="10"
-                    android:progress="8"/>
+                    tools:progress="8"/>
 
                 <TextView
+                    android:id="@+id/txtVote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="5.4"/>
+                    android:textAppearance="@style/TextAppearance"
+                    tools:text="5.4"/>
 
             </FrameLayout>
-
 
             <Space
                 android:layout_width="8dp"
@@ -60,6 +63,7 @@
                 android:gravity="center_vertical"
                 android:layout_weight="1"
                 android:maxLines="2"
+                android:textAppearance="@style/TextAppearance"
                 android:ellipsize="end"/>
         </LinearLayout>
 

@@ -7,9 +7,9 @@ public class MovieDetailModel {
     private String overView;
     private String originalTitle;
     private String releaseDate;
-    private int runTime;
+    private String runTime;
 
-    public MovieDetailModel(String overView,String imageUri,String originalTitle,String releaseDate,int runTime) {
+    public MovieDetailModel(String overView,String imageUri,String originalTitle,String releaseDate,String runTime) {
         this.overView = overView;
         this.imageUri= imageUri;
         this.originalTitle=originalTitle;
@@ -33,7 +33,7 @@ public class MovieDetailModel {
         return releaseDate;
     }
 
-    public int getRunTime() {
+    public String getRunTime() {
         return runTime;
     }
 }
